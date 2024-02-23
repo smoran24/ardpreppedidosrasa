@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" >
+	<Dialog id="SuccesCorreo" title="" draggable="true" contentWidth="50%" >
+		
+		<VBox  class="sapUiResponsiveMargin" alignContent="Center" alignItems="Center" justifyContent="Center">
+			<Table items="{Succes>/}">
+				<items>
+					<ColumnListItem type="Inactive">
+						<cells>
+							<Text text="{Succes>codigo}"/>
+							<Text text="{Succes>descripcion}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column>
+						<header>
+							<Label text="Código"/>
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Label text="Descripción"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+		</VBox>
+		<buttons>
+			<Button text="Aceptar" press="cerrarPopSuccesCorreo"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

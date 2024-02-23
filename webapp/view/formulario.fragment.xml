@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="Formulario" title="Creacion de material" draggable="true">
+		
+		<VBox class="sapUiResponsiveMargin">
+			<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="100%" justifyContent="Start" visible="true" displayInline="false">
+				<items>
+					<Text text="Referencia" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+					<Input width="100%" placeholder="72700em30a"/>
+				</items>
+			</VBox>
+			<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="100%" justifyContent="Start" visible="true" displayInline="false">
+				<items>
+					<Text text="Descripcion" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+					<Input width="100%" placeholder=""/>
+				</items>
+			</VBox>
+			<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="100%" justifyContent="Start" visible="true" displayInline="false">
+				<items>
+					<Text text="VIN *" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+					<Input width="100%" placeholder=""/>
+				</items>
+			</VBox>
+			<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="100%" justifyContent="Start" visible="true" displayInline="false">
+				<items>
+					<Text text="Email de contacto" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+					<Input width="100%" placeholder="usuario@nissa.cl"/>
+				</items>
+			</VBox>
+		</VBox>
+			<buttons>
+			<Button text="Enviar" press="funciona"/>
+			<Button text="Cancelar" press="cerrarPopCarga"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

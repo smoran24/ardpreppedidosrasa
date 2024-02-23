@@ -1,0 +1,97 @@
+{
+  "welcomeFile": "/index2.html",
+  "routes": [
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/destinations/IDP_Nissan",
+      "target": {
+        "type": "destination",
+        "name": "IDP_Nissan"
+      },
+      "description": "IDP_Nissan"
+    },
+    {
+      "path": "/services/userapi",
+      "target": {
+        "type": "service",
+        "name": "userapi"
+      }
+    },
+    {
+      "path": "/destinations/AR_DP_REP_DEST_HANA",
+      "target": {
+        "type": "destination",
+        "name": "AR_DP_REP_DEST_HANA"
+      },
+      "description": "AR_DP_REP_DEST_HANA"
+    },
+    {
+      "path": "/destinations/HCI_CrediNissan",
+      "target": {
+        "type": "destination",
+        "name": "HCI_CrediNissan"
+      },
+      "description": "HCI_CrediNissan"
+    },
+    {
+      "path": "/destinations/HCI_CrediNissan_2",
+      "target": {
+        "type": "destination",
+        "name": "HCI_CrediNissan"
+      },
+      "description": "HCI_CrediNissan_2"
+    },
+    {
+      "path": "/destinations/AR_DP_DEST_CPI",
+      "target": {
+        "type": "destination",
+        "name": "AR_DP_DEST_CPI"
+      },
+      "description": "AR_DP_DEST_CPI"
+    },
+    {
+      "path": "/destinations/AR_DP_DEST_ODATA",
+      "target": {
+        "type": "destination",
+        "name": "AR_DP_DEST_ODATA"
+      },
+      "description": "AR_DP_DEST_ODATA"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

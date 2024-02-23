@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+		<List
+			items="{Valor}" >
+			<StandardListItem
+				title="{Material}"
+				description="{Descripcion}"
+				counter="{Cantidad}"/>
+		</List>
+	</Popover>
+</core:FragmentDefinition>

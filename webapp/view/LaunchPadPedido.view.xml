@@ -1,0 +1,32 @@
+<mvc:View controllerName="AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.controller.LaunchPadPedido" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="grid0">
+							<sap.ui.layout:content>
+								<ObjectListItem title="Pedido Stock"  numberUnit="cant" icon="sap-icon://action" type="Active" id="stock" press="stock"
+									visible="false"/>
+								<ObjectListItem title="Pedido Inmovilizado"  numberUnit="cant" icon="sap-icon://action" id="inmovilizado"
+									press="Inmovilizado" visible="false" type="Active"/>
+								<ObjectListItem title="Pedido Interno"  numberUnit="cant" icon="sap-icon://action" id="interno" press="Interno"
+									visible="false" type="Active"/>
+								<ObjectListItem title="Pedido Urgente"  numberUnit="cant" icon="sap-icon://action" id="urgente" press="Urgente" 
+								type="Active" 	visible="false"/>
+							</sap.ui.layout:content>
+						</sap.ui.layout:Grid>
+					</content>
+					<customHeader>
+						<Bar class="sapContrastPlus" design="Header" visible="true">
+							<contentLeft>
+								<Text text="Creación de Pedidos" class="tituloHead"/>
+							</contentLeft>
+						</Bar>
+					</customHeader>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

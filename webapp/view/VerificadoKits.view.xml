@@ -1,0 +1,68 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.controller.VerificadoKits" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Verificación pedido Kits">
+				<content>
+					<Table id="Result" inset="false" showSeparators="All" alternateRowColors="true" items="{/Pedido/ListaKits/Valor}">
+						<columns>
+							<Column width="10%">
+								<Text text="{i18n>Kit}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Cliente}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Dominio}"/>
+							</Column>
+							<Column width="40%">
+								<Text text="{i18n>Comentario}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Stock}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Bom}"/>
+							</Column>
+							<Column width="10%">
+								<Text text=""/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{Kit}"/>
+									<Text text="{Cliente}"/>
+									<Text text="{Dominio}"/>
+									<Text text="{Comentario}"/>
+									<core:Icon src="{= ${Stock} ? 'sap-icon://status-positive' : 'sap-icon://status-negative' }" 
+									height="20px" width="25px" class="size2" color="{= ${Stock} ? '#00c753' : '#e30000' }"/>
+									<Button icon="sap-icon://group-2" press="openBOMPopUp"/>
+									
+									<Button id="btnEliminar" icon="sap-icon://delete" press="handleDelete"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<customHeader>
+					<Bar class="sapContrastPlus" design="Header" visible="true">
+						<contentMiddle>
+							<VBox width="15px"/>
+							<Text text="Verificación pedido Kits" class="tituloHead"/>
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<footer >
+					<Bar class="sapContrast sapContrastPlus">
+						<contentRight>
+							<Button id="gp" text="Generar Pedido" type="Accept" press="generarPedidos" class="sapUiSmallMarginEnd"/>
+							<Button id="atras" text="Atrás" type="Reject" press="navBack" class="sapUiSmallMarginEnd"/>
+							<Button id="Cancelar" text="Salir" type="Reject" press="cancelarPedido" class="sapUiSmallMarginEnd"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

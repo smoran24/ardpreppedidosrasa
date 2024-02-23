@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" >
+	<Dialog id="dialogError" title="" draggable="true" contentWidth="50%" >
+		
+		<VBox  class="sapUiResponsiveMargin" alignContent="Center" alignItems="Center" justifyContent="Center">
+			<Table items="{error>/}">
+				<items>
+					<ColumnListItem type="Inactive">
+						<cells>
+							<Text text="{error>codigo}"/>
+							<Text text="{error>descripcion}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column>
+						<header>
+							<Label text="Código"/>
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Label text="Descripción"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+		</VBox>
+		<buttons>
+			<Button text="Aceptar" press="cerrarPopError"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

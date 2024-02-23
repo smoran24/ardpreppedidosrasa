@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: ardpreppedidosrasa
+description: A Fiori application.
+version: 0.0.7
+modules:
+- name: ardpreppedidosrasa-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: ardpreppedidosrasa-destination-service
+    parameters:
+      content-target: true
+  - name: ardpreppedidosrasa-repo-host
+    parameters:
+      service-key:
+        name: ardpreppedidosrasa-repo-host-key
+  - name: ardpreppedidosrasa-uaa
+    parameters:
+      service-key:
+        name: ardpreppedidosrasa-uaa-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: ardpreppedidosrasa_html_repo_host
+          ServiceInstanceName: ardpreppedidosrasa-html5-srv
+          ServiceKeyName: ardpreppedidosrasa-repo-host-key
+          sap.cloud.service: ardpreppedidosrasa
+        - Authentication: OAuth2UserTokenExchange
+          Name: ardpreppedidosrasa_uaa
+          ServiceInstanceName: ardpreppedidosrasa-xsuaa-srv
+          ServiceKeyName: ardpreppedidosrasa-uaa-key
+          sap.cloud.service: ardpreppedidosrasa
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: ardpreppedidosrasa-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: ardpreppedidosrasa-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - ardpreppedidosrasa.zip
+      name: ardpreppedidosrasa
+      target-path: resources/
+- name: ardpreppedidosrasa
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: ardpreppedidosrasa-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: ardpreppedidosrasa-destination-service
+    service-plan: lite
+- name: ardpreppedidosrasa-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: ardpreppedidosrasa-xsuaa-srv
+    service-plan: application
+- name: ardpreppedidosrasa-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: ardpreppedidosrasa-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" id="Diag">
+	<SelectDialog title="Materiales" class="sapUiPopupWithPadding" items="{path: 'material>/'}" liveChange="ConsultaMaterial2"
+		confirm="_handleValueHelpClose" cancel="_handleValueHelpClose" id="Sto">
+		<StandardListItem title="{material>MATERIAL}" description="{material>DESCRIPCION}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

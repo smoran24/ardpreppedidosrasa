@@ -1,0 +1,39 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.controller.menuprincipal" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="grid0">
+							<sap.ui.layout:content>
+								<ObjectListItem title="Pedido Stock" numberUnit="cant" icon="sap-icon://action" type="Active" id="stock" press="stock" visible="false"/>
+								<ObjectListItem title="Pedido Inmovilizado" numberUnit="cant" icon="sap-icon://action" id="inmovilizado" press="Inmovilizado" visible="false" type="Active"/>
+								<ObjectListItem title="Pedido Urgente" numberUnit="cant" icon="sap-icon://action" id="urgente" press="Urgente" type="Active" visible="false"/>
+								<ObjectListItem title="Pedido Interno" numberUnit="cant" icon="sap-icon://action" id="interno" press="Interno" visible="false" type="Active"/>
+								<ObjectListItem title="Pedido Diferido" numberUnit="cant" icon="sap-icon://action" id="diferido" press="Diferido" visible="false" type="Active"/>
+								<ObjectListItem title="Pedido Kits" numberUnit="cant" icon="sap-icon://action" id="kits" press="Kits" visible="false" type="Active"/>
+								<ObjectListItem title="Pedido Anormal" numberUnit="cant" icon="sap-icon://action" id="anormal" press="Anormal" visible="false" type="Active"/>
+							</sap.ui.layout:content>
+						</sap.ui.layout:Grid>
+					</content>
+						<footer>
+						<Bar class="sapContrast sapContrastPlus">
+						
+							<contentRight>
+								<Button text="Salir" type="Reject" icon="sap-icon://log" press="onSalir"/>
+							</contentRight>
+						</Bar>
+					</footer>
+					<customHeader>
+						<Bar class="sapContrastPlus" design="Header" visible="true">
+							<contentLeft>
+								<Text text="Creación de Pedidos" class="tituloHead"/>
+							</contentLeft>
+						</Bar>
+					</customHeader>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

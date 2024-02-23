@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" id="PopDescartadosInmovilizado">
+	<SelectDialog title="Materiales" class="sapUiPopupWithPadding" items="{path: 'listaNegra>/'}" 
+		confirm="EnvioCorreo" cancel="cerrarpopmalos" id="PiInmovilizado">
+		<StandardListItem title="{listaNegra>Material}" description="{listaNegra>Mensaje}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

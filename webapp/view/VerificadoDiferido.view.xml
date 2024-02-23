@@ -1,0 +1,101 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.controller.VerificadoDiferido" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Verificación pedido Diferido">
+				<content>
+					<Table id="Result" inset="false" showSeparators="All" alternateRowColors="true" items="{/Pedido/ListaMateriales/Valor}">
+						<columns>
+							<Column width="10%">
+								<Text text="{i18n>CodigoPatente}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>DescripcionProducto}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Unidad}"/>
+							</Column>
+							<Column width="5%">
+								<Text text="{i18n>Stock}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Precio}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Descuento}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>Recargo}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>PrecioFinal}"/>
+							</Column>
+							<Column width="10%">
+								<Text text="{i18n>PrecioVenta}"/>
+							</Column>
+							<Column width="7%">
+								<Text text="Cantidad Pedido"/>
+							</Column>
+								<Column width="6%">
+								<Text text=" "/>
+							</Column>
+							<Column width="8%" id = "cantstock" visible="{/Pedido/ListaMateriales/MostrarColumnaCantidadStock}">
+								<Text text="Cantidad Stock"/>
+							</Column>
+							<Column width="5%">
+								<Text text="{i18n>Backorder}"/>
+							</Column>
+						
+							<Column width="7%">
+								<Text text="{i18n>Eliminar}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{Material}"/>
+									<Text text="{Descripcion}"/>
+									<Text text="{Unidad}"/>
+									<core:Icon src="{StockIcono}" height="20px" width="25px" class="size2" color="{StockColor}"/>
+										<Text text="{=${Precio} > 0 ? ${Precio} + ' ARS' : ${Precio}}"/>
+									<Text text="{=${Descuento} > 0 ? ${Descuento} + ' ARS' : ${Descuento}}"/>
+									<Text text="{=${Recargo} > 0 ? ${Recargo} + ' ARS' : ${Recargo}}"/>
+									<Text text="{=${PrecioFinal} > 0 ? ${PrecioFinal} + ' ARS' : ${PrecioFinal}}"/>
+									<Text text="{=${PrecioVenta} > 0 ? ${PrecioVenta} + ' ARS' : ${PrecioVenta}}"/>
+									<Input id="input_cant" value="{Cantidad}" editable="false"/>
+									<core:Icon visible="{CantPedAjustado}" src="sap-icon://status-critical"
+										color="#ffbc05" height="20px" width="25px" class="size2"  tooltip="La cantidad se ha ajustado de acuerdo al múltiplo o mínimo y consolidando los registros para el mismo material"  press="mensaje"/>
+									<Text text="{CantAsig}" visible="{/Pedido/ListaMateriales/MostrarColumnaCantidadStock}"/>
+									<CheckBox id="backorder" selected="{= ${BackOrder} === true ? true:false}" select="check" blocked="{= ${CantAsig} === 0 ? true : false}"/>
+									
+									<Button id="btnEliminar" icon="sap-icon://delete" press="handleDelete"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<customHeader>
+					<Bar class="sapContrastPlus" design="Header" visible="true">
+						<contentMiddle>
+							<VBox width="15px"/>
+							<Text text="Verificación pedido Diferido" class="tituloHead"/>
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<footer >
+					<Bar class="sapContrast sapContrastPlus">
+						<contentLeft>
+							<Button id="malos" text="Pendientes" type="Reject" press="handleValueHelpMaterialesRechazados" icon="sap-icon://warning"
+							visible="{= ${/Pedido/ListaMateriales/ListaMaterialesSeleccionadosNoExistentes}.length > 0}"/>
+						</contentLeft>
+						<contentRight>
+							<Button id="gp" text="Generar Pedido" type="Accept" press="generarPedido" class="sapUiSmallMarginEnd"/>
+							<Button id="atras" text="Atrás" type="Reject" press="navBack" class="sapUiSmallMarginEnd"/>
+							<Button id="Cancelar" text="Salir" type="Reject" press="cancelarPedido" class="sapUiSmallMarginEnd"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

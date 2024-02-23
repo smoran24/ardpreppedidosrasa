@@ -1,0 +1,252 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "version": "1.40.12"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/destinations/AR_DP_REP_DEST_HANA/ODATA_masterPedido.xsodata",
+                "type": "OData"
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "ardpreppedidosrasa-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "ardpreppedidosrasa",
+                    "action": "Display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": "sap-icon://create"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.view.menuprincipal",
+            "type": "XML",
+            "async": true,
+            "id": "LaunchPadPedido"
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false,
+                "bypassed": {
+                    "target": []
+                }
+            },
+            "routes": [
+                {
+                    "pattern": "menuprincipal",
+                    "name": "menuprincipal",
+                    "target": "menuprincipal"
+                },
+                {
+                    "pattern": "CrearPedidoAnormal",
+                    "name": "CrearPedidoAnormal",
+                    "target": "CrearPedidoAnormal"
+                },
+                {
+                    "pattern": "CrearPedidoKits",
+                    "name": "CrearPedidoKits",
+                    "target": "CrearPedidoKits"
+                },
+                {
+                    "pattern": "CrearPedidoDiferido",
+                    "name": "CrearPedidoDiferido",
+                    "target": "CrearPedidoDiferido"
+                },
+                {
+                    "pattern": "CrearPedidoUrgente",
+                    "name": "urgente",
+                    "target": "CrearPedidoUrgente"
+                },
+                {
+                    "pattern": "CrearPedidoInmovilizado",
+                    "name": "inmovilizado",
+                    "target": "CrearPedidoInmovilizado"
+                },
+                {
+                    "pattern": "CrearPedidoInterno",
+                    "name": "interno",
+                    "target": "CrearPedidoInterno"
+                },
+                {
+                    "pattern": "CrearPedidoStock",
+                    "name": "stock",
+                    "target": "CrearPedidoStock"
+                },
+                {
+                    "pattern": "CrearPedidoVerificado/{data}",
+                    "name": "verificado",
+                    "target": "CrearPedidoVerificado"
+                },
+                {
+                    "pattern": "VerificadoAnormal",
+                    "name": "VerificadoAnormal",
+                    "target": "VerificadoAnormal"
+                },
+                {
+                    "pattern": "VerificadoKits",
+                    "name": "VerificadoKits",
+                    "target": "VerificadoKits"
+                },
+                {
+                    "pattern": "VerificadoDiferido",
+                    "name": "VerificadoDiferido",
+                    "target": "VerificadoDiferido"
+                },
+                {
+                    "pattern": "VerificaInmovilizado/{data}",
+                    "name": "verificadoInmovilizado",
+                    "target": "VerificaInmovilizado"
+                },
+                {
+                    "pattern": "VerificadoUrgente/{data}",
+                    "name": "VerificadoUrgente",
+                    "target": "VerificadoUrgente"
+                },
+                {
+                    "pattern": "VerificaInterno/{data}",
+                    "name": "VerificaInterno",
+                    "target": "VerificaInterno"
+                }
+            ],
+            "targets": {
+                "CrearPedidoAnormal": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoAnormal"
+                },
+                "CrearPedidoKits": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoKits"
+                },
+                "CrearPedidoDiferido": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoDiferido"
+                },
+                "CrearPedidoInmovilizado": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoInmovilizado"
+                },
+                "CrearPedidoInterno": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoInterno"
+                },
+                "CrearPedidoStock": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoStock"
+                },
+                "CrearPedidoUrgente": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoUrgente"
+                },
+                "CrearPedidoVerificado": {
+                    "viewType": "XML",
+                    "viewName": "CrearPedidoVerificado"
+                },
+                "VerificadoAnormal": {
+                    "viewType": "XML",
+                    "viewName": "VerificadoAnormal"
+                },
+                "VerificadoKits": {
+                    "viewType": "XML",
+                    "viewName": "VerificadoKits"
+                },
+                "VerificadoDiferido": {
+                    "viewType": "XML",
+                    "viewName": "VerificadoDiferido"
+                },
+                "VerificadoUrgente": {
+                    "viewType": "XML",
+                    "viewName": "VerificadoUrgente"
+                },
+                "VerificaInmovilizado": {
+                    "viewType": "XML",
+                    "viewName": "VerificaInmovilizado"
+                },
+                "VerificaInterno": {
+                    "viewType": "XML",
+                    "viewName": "VerificaInterno",
+                    "viewLevel": 1,
+                    "transition": "show"
+                },
+                "menuprincipal": {
+                    "viewType": "XML",
+                    "viewName": "menuprincipal"
+                }
+            }
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ardpreppedidosrasa"
+    }
+}

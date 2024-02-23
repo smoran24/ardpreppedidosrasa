@@ -1,0 +1,172 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	controllerName="AR_DP_REP_PEDIDO_RASA.AR_DP_REP_PEDIDO_RASA.controller.CrearPedidoInterno" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Shell id="shell">
+		<App id="app3">
+			<pages>
+				<Page id="page" title="Pedido Interno">
+					<content>
+						<Panel headerText="Cabecera de Pedido">
+							<HBox>
+								<VBox alignItems="Stretch" direction="Column" id="idSolicitante" fitContainer="false" width="20%" justifyContent="Start" visible="true"
+									displayInline="false">
+									<items>
+										<Text text="Solicitante" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<ComboBox xmlns="sap.m" id="cmbcliente" placeholder="Solicitante" width="100%" items="{path: 'cliente>/'}" loadItems="ConsultaOdata4"
+											change="Destinatario">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="{cliente>SOLICITANTE}" text="{cliente>NOMBRE_SOLICITANTE}"/>
+											</items>
+										</ComboBox>
+										<Text text="Límite de Crédito" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" id="labelcredito"/>
+									</items>
+								</VBox>
+								<HBox width="20px"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="20%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Pedido Dealer" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<MaskInput id="PedidoDealer" width="100%" placeholder="123456789" mask="CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" placeholderSymbol="">
+											<rules>
+												<MaskInputRule maskFormatSymbol="C" regex="[^_]"/>
+											</rules>
+										</MaskInput>
+										<!--<Input width="100%" placeholder="123456789" id="PedidoDealer"  change ="Destinatario"/>-->
+									</items>
+								</VBox>
+								<HBox width="20px"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="20%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Destinatario" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<ComboBox xmlns="sap.m" id="interlocutor" width="100%" placeholder="Destinatario" items="{path: 'interlocutor>/'}">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="{interlocutor>DESTINATARIO}" text="{interlocutor>DIRECCION}"/>
+											</items>
+										</ComboBox>
+									</items>
+								</VBox>
+								<HBox width="20px"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="20%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="VIN" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Input width="100%" placeholder="17 CARACTERES" id="VIN" change="validaVIN"  maxLength="17" />
+									</items>
+								</VBox>
+								<HBox width="20px"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="20%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="OR" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Input width="100%" placeholder="1234567890" id="OR"/>
+									</items>
+								</VBox>
+							</HBox>
+						</Panel>
+						<Panel headerText="Carga Manual de Piezas">
+							<HBox>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="40%" justifyContent="Start" renderType="Bare" visible="true"
+									displayInline="false">
+									<items>
+										<Text text="Material" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Input id="material" type="Text" placeholder="Material" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp" liveChange="mayuscula"
+											suggestionItems="{path: 'material>/'}">
+											<suggestionItems>
+												<core:Item text="{material>MATERIAL}"/>
+											</suggestionItems>
+										</Input>
+										<!--<ComboBox xmlns="sap.m" id="material" width="100%" placeholder="Destinatario" items="{path: 'material>/'}" change="validarcant" >-->
+										<!--	<items>-->
+										<!--		<core:Item xmlns:core="sap.ui.core" key="{material>MATERIAL}" text="{material>MATERIAL}"/>-->
+										<!--	</items>-->
+										<!--</ComboBox>-->
+									</items>
+								</VBox>
+								<HBox width="20px"/>
+								<HBox alignItems="Stretch" direction="Column" fitContainer="false" width="50%" justifyContent="Start" renderType="Bare" visible="true"
+									displayInline="false">
+								
+									<items>
+										
+										<Text text="Cantidad" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<HBox>
+										<!--<Input width="100%" id="Cantidad" placeholder="Ingrese Cantidad" type="Number" liveChange="validacantidadm"/>-->
+										<MaskInput id="Cantidad" width="100%" placeholder="Ingrese Cantidad" mask="999999" placeholderSymbol=" "/>
+									
+									<HBox width="20px"/>
+								
+										<Text text=" " width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Button type="Accept" icon="sap-icon://add" press="camino" width="100%" text="Cargar Material"/>
+										</HBox>
+									</items>
+								
+								</HBox>
+							</HBox>
+						</Panel>
+						<Panel headerText="Carga Masiva de Piezas">
+							<HBox>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="50%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Carga de Archivos" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<u:FileUploader id="uplExcel" buttonOnly="true" buttonText="Cargar excel" visible="{flowCreationVal>/stepThreeVis/visExcel}"
+											icon="sap-icon://upload" change="onSubirArchivo" fileType ="xlsx"/>
+									</items>
+								</VBox>
+							
+							</HBox>
+						</Panel>
+						<!--tabla-->
+						<Table noDataText="Sin datos" items="{ path : 'listadoMateriales>/'}" id="tMaestra" width="50%" growingScrollToLoad="true"
+								backgroundDesign="Transparent">
+							<columns>
+								<Column mergeDuplicates="true">
+									<header>
+										<Label text="Nombre Material"/>
+									</header>
+								</Column>
+								<Column mergeDuplicates="false" width="7rem">
+									<header>
+										<Label text="Cantidad"/>
+									</header>
+								</Column>
+								<Column mergeDuplicates="false" width="7rem">
+									<header>
+										<Label text=""/>
+									</header>
+								</Column>
+								<Column mergeDuplicates="false" width="7rem">
+									<header>
+										<Label text=""/>
+									</header>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="Active">
+									<cells>
+										<Text text="{listadoMateriales>material}"/>
+										<Text text="{listadoMateriales>cantidad}"/>
+										<Button type="Ghost" icon="sap-icon://edit" press="Editar" width="100%"/>
+										<Button type="Ghost" icon="sap-icon://delete" press="handleDelete" width="100%"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<!--fin tabla -->
+					</content>
+					<customHeader>
+						<Bar class="sapContrastPlus" design="Header" visible="true">
+							<contentMiddle>
+								<VBox width="15px"/>
+								<Text text="Creación Pedido Interno" class="tituloHead" textAlign="Center"/>
+							</contentMiddle>
+						</Bar>
+					</customHeader>
+					<footer >
+						<Bar class="sapContrast sapContrastPlus">
+							<contentRight>
+								<Button id="Verificar" text="Verificar" type="Accept" press="validacampos" class="sapUiSmallMarginEnd"/>
+								<Button id="Cancelar" text="Salir" type="Reject" press="atras" class="sapUiSmallMarginEnd"/>
+							</contentRight>
+						</Bar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

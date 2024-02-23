@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="indicadorCarga" title="Cargando..." draggable="true">
+		<VBox class="sapUiResponsiveMargin" width="auto" alignItems="Center">
+			<BusyIndicator/>
+			<Label text="Procesando..."/>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>
