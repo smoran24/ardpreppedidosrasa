@@ -2,6 +2,8 @@ sap.ui.define([
 ], function (Fragment, Filter, FilterOperator, MessageBox) {
 	"use strict";
 	return {
+		dealerRasa: 233911,
+
 		loadCurrentUserIASData: function(){
 			let that = this;
 			let dfdIASUserData = $.Deferred();
@@ -73,7 +75,7 @@ sap.ui.define([
 			return dfdIsNissanUser;
 		},
 
-		isCurrentUserARASAUser: function(){
+		isCurrentUserRASAUser: function(){//esto va tambien
 			var that = this;
 			let dfdIsNissanUser = $.Deferred();
 			let dfdCurrentUserDataIAS = this.loadCurrentUserIASData();

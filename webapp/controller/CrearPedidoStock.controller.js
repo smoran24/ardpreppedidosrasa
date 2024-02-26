@@ -455,9 +455,12 @@ sap.ui.define([
 			var key = '%27' + oView.byId("cmbcliente").getSelectedKey() + '%27'; //aqui rescatas el valor 
 			var region = '/destinations/AR_DP_REP_DEST_HANA/ODATA_masterPedido.xsodata/destinatario?$filter=SOLICITANTE%20eq%20';
 			var url = region + key; // aca juntas la url con el filtro que quiere hacer 
-			console.log(region);
+			
+			if(Utils.isCurrentUserRASAUser())
+				url += "and%20DESTINATARIO%20eq%20" + key;
+
             var appid = this.getOwnerComponent().getManifestEntry("/sap.app/id").replaceAll(".","/");
-  var appModulePath = jQuery.sap.getModulePath(appid);
+  			var appModulePath = jQuery.sap.getModulePath(appid);
 			//Consulta
 			$.ajax({
 				type: 'GET',
@@ -796,10 +799,10 @@ sap.ui.define([
 				success: function (dataR, textStatus, jqXHR) {
 					t.cerrarPopCarga2();
 					console.warn(dataR);
-					Respuesta = dataR;
-					t.Verificado();
-					//	t.GenerarVerificado(dataR);
-
+					t.agregarMaterialesSustitutos(dataR).then(function(result){
+						Respuesta = result;
+						t.Verificado();
+					})
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					t.cerrarPopCarga2();
@@ -815,6 +818,63 @@ sap.ui.define([
 
 			});
 
+		},
+		agregarMaterialesSustitutos: function(materialesVerificados){
+			var dfdAgregadosSustitutos = $.Deferred();
+			//TODO seguir por aca
+			var requestData = JSON.stringify({
+				"HeaderSet": {
+					"Header": {
+						"Material": "",
+						"Nav_Header_Materiales": {
+							"Materiales": materialesVerificados.map((x) => {
+								Material: x.Material
+							})
+						}
+					}
+				}
+			})
+
+			var appid = this.getOwnerComponent().getManifestEntry("/sap.app/id").replaceAll(".","/");
+            var appModulePath = jQuery.sap.getModulePath(appid);
+			$.ajax({
+				type: 'POST',
+				url: appModulePath + "/AR_DP_DEST_CPI/http/AR/DealerPortal/Reporte/Stock/MaterialesSustitutos",
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				async: true,
+				data: requestData,
+				success: function (dataR, textStatus, jqXHR) {
+					try {
+						if (!dataR.HeaderSet.Header.Nav_Header_Materiales.Materiales.length) {
+							arrResponse.push(dataR.HeaderSet.Header.Nav_Header_Materiales.Materiales);
+						} else {
+							arrResponse = dataR.HeaderSet.Header.Nav_Header_Materiales.Materiales;
+						}
+						oSelModel.setProperty("/intCount", arrResponse.length);
+						oSelModel.setProperty("/stock", arrResponse);
+						this._setBusy(false);
+					} catch (err) {
+						this._setBusy(false);
+						//this.setBusyView(false);
+					}
+				}.bind(this),
+				error: function (jqXHR, textStatus, errorThrown) {
+					this._setBusy(false);
+					var strJson = {
+						codigo: "500",
+						descripcion: "Error de Comunicacion favor contactar a Soporte"
+					};
+					arrResponse.push(strJson);
+				}.bind(this),
+			});
+		},
+		obtenerMaterialesSustitutos: function(numeroMaterial){
+			arrRequest.push({
+				"Material": vMaterial[i].Material.toString().toUpperCase()
+			});
+
+			
 		},
 
 		//funciones para moverse

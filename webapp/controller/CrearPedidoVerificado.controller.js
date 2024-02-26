@@ -770,7 +770,6 @@ sap.ui.define([
 
 									t.popSucces(arr, "Pedido Creado Exitosamente");
 									
-									//TODO auditoria, todavia no poner en PRD
 									let nroPedido = t.extraerNroPedido(mensaje);
 									t.generarEntradaAuditoria(nroPedido);
 								} else {

@@ -58,22 +58,16 @@
 									<Text text="{listadoMateriales>unidad}"/>
 									<core:Icon src="{listadoMateriales>color}" height="20px" width="25px" class="size2" color="{listadoMateriales>ncolor}"/>
 										<Text text="{=${listadoMateriales>Precio} > 0 ? ${listadoMateriales>Precio} + ' ARS' : ${listadoMateriales>Precio}}"/>
-									<!--<Text text="{listadoMateriales>Precio}"/>-->
 									<Text text="{=${listadoMateriales>Descuento} > 0 ? ${listadoMateriales>Descuento} + ' ARS' : ${listadoMateriales>Descuento}}"/>
-									<!--<Text text="{listadoMateriales>Descuento}"/>-->
 									<Text text="{=${listadoMateriales>Recargo} > 0 ? ${listadoMateriales>Recargo} + ' ARS' : ${listadoMateriales>Recargo}}"/>
-									<!--<Text text="{listadoMateriales>Recargo}"/>-->
 									<Text text="{=${listadoMateriales>PrecioFinal} > 0 ? ${listadoMateriales>PrecioFinal} + ' ARS' : ${listadoMateriales>PrecioFinal}}"/>
 									<Text text="{=${listadoMateriales>PrecioVenta} > 0 ? ${listadoMateriales>PrecioVenta} + ' ARS' : ${listadoMateriales>PrecioVenta}}"/>
-									<!--<Text text="{listadoMateriales>PrecioFinal}"/>-->
-									<!--<Text text="{listadoMateriales>PrecioVenta}"/>-->
 									<Input id="input_cant" value="{listadoMateriales>CantPed}" editable="false"/>
 									<core:Icon visible="{=${listadoMateriales>CantOrg}!==${listadoMateriales>CantPed} || ${listadoMateriales>cant} > 1 ? true:false}" src="sap-icon://status-critical"
 										color="#ffbc05" height="20px" width="25px" class="size2"  tooltip="La cantidad se ha ajustado de acuerdo al múltiplo o mínimo y consolidando los registros para el mismo material"  press="mensaje"/>
 									<Text text="{listadoMateriales>CantAsig}" id ="cantsotck2"/>
+									<Text text="{listadoMateriales>MaterialesSustitutos}" id ="materialesSustitutos"/>
 									<CheckBox id="backorder" selected="{=${listadoMateriales>backOrder}===true? true:false}" select="check" blocked="{=${listadoMateriales>CantAsig}===0? true:false}"/>
-									
-									<!--<Button id="btnEdit" icon="sap-icon://request"/>-->
 									<Button id="btnEliminar" icon="sap-icon://delete" press="handleDelete"/>
 								</cells>
 							</ColumnListItem>
